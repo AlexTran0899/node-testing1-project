@@ -1,87 +1,37 @@
-/**
- * [Exercise 1] trimProperties copies an object trimming its properties
- * @param {object} obj - an object with properties that are strings
- * @returns {object} - a copy of the object with strings trimmed
- *
- * EXAMPLE
- * trimProperties({ name: '  jane  ' }) // returns a new object { name: 'jane' }
- */
+
 function trimProperties(obj) {
-  // ✨ implement
+  const object = {}
+  Object.keys(obj).map(data =>  (object[data] = obj[data].trim()))
+  return object
 }
 
-/**
- * [Exercise 2] trimPropertiesMutation trims in place the properties of an object
- * @param {object} obj - an object with properties that are strings
- * @returns {object} - the same object with strings trimmed
- *
- * EXAMPLE
- * trimPropertiesMutation({ name: '  jane  ' }) // returns the object mutated in place { name: 'jane' }
- */
 function trimPropertiesMutation(obj) {
-  // ✨ implement
+   Object.keys(obj).map(data =>  (obj[data] = obj[data].trim()))
+  return obj
 }
 
-/**
- * [Exercise 3] findLargestInteger finds the largest integer in an array of objects { integer: 1 }
- * @param {object[]} integers - an array of objects
- * @returns {number} - the largest integer
- *
- * EXAMPLE
- * findLargestInteger([{ integer: 1 }, { integer: 3 }, { integer: 2 }]) // returns 3
- */
 function findLargestInteger(integers) {
-  // ✨ implement
+  const numbers = integers.map(data => data.integer)
+  return({integer: Math.max(...numbers)})
 }
 
 class Counter {
-  /**
-   * [Exercise 4A] Counter creates a counter
-   * @param {number} initialNumber - the initial state of the count
-   */
   constructor(initialNumber) {
-    // ✨ initialize whatever properties are needed
+    this.count = initialNumber
   }
-
-  /**
-   * [Exercise 4B] Counter.prototype.countDown counts down to zero
-   * @returns {number} - the next count, does not go below zero
-   *
-   * EXAMPLE
-   * const counter = new Counter(3)
-   * counter.countDown() // returns 3
-   * counter.countDown() // returns 2
-   * counter.countDown() // returns 1
-   * counter.countDown() // returns 0
-   * counter.countDown() // returns 0
-   */
   countDown() {
-    // ✨ implement
+    return this.count? this.count -- : 0
   }
 }
 
 class Seasons {
-  /**
-   * [Exercise 5A] Seasons creates a seasons object
-   */
-  constructor() {
-    // ✨ initialize whatever properties are needed
-  }
 
-  /**
-   * [Exercise 5B] Seasons.prototype.next returns the next season
-   * @returns {string} - the next season starting with "summer"
-   *
-   * EXAMPLE
-   * const seasons = new Seasons()
-   * seasons.next() // returns "summer"
-   * seasons.next() // returns "fall"
-   * seasons.next() // returns "winter"
-   * seasons.next() // returns "spring"
-   * seasons.next() // returns "summer"
-   */
+  constructor() {
+    this.season = ['summer','fall', 'winter', 'spring']
+    this.count = -1
+  }
   next() {
-    // ✨ implement
+    return this.season[this.count === 3? this.count = 0 : this.count+=1]
   }
 }
 
