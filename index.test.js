@@ -62,6 +62,7 @@ describe('[Exercise 5] Seasons', () => {
   let seasons
   beforeEach(() => {
     seasons = new utils.Seasons() // each test must start with fresh seasons
+    
   })
   test('[9] the FIRST call of seasons.next returns "summer"', ()=>{
     expect(seasons.next()).toBe('summer')
@@ -92,7 +93,6 @@ describe('[Exercise 5] Seasons', () => {
   test('[14] the 40th call of seasons.next returns "spring"', ()=>{
     for (let i = 0; i< 39; i++){
       seasons.next()
-      // console.log(seasons.next())
     }
     expect(seasons.next()).toBe('spring')
   })
@@ -103,8 +103,14 @@ describe('[Exercise 6] Car', () => {
   beforeEach(() => {
     focus = new utils.Car('focus', 20, 30) // each test must start with a fresh car
   })
-  test.todo('[15] driving the car returns the updated odometer')
-  test.todo('[16] driving the car uses gas')
+  test('[15] driving the car returns the updated odometer', ()=>{
+    focus.drive(30)
+    expect(focus.odometer).toBe(30)
+  })
+  test('[16] driving the car uses gas', ()=>{
+    focus.drive(30)
+    expect(focus.tank).toBe(19)
+  })
   test.todo('[17] refueling allows to keep driving')
   test.todo('[18] adding fuel to a full tank has no effect')
 })
