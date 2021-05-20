@@ -104,20 +104,43 @@ describe('[Exercise 6] Car', () => {
     focus = new utils.Car('focus', 20, 30) // each test must start with a fresh car
   })
   test('[15] driving the car returns the updated odometer', ()=>{
-    focus.drive(30)
-    expect(focus.odometer).toBe(30)
+    focus.drive(600); expect(focus.odometer).toBe(600)
+    focus.drive(1); expect(focus.odometer).toBe(600)
   })
   test('[16] driving the car uses gas', ()=>{
-    focus.drive(30)
-    expect(focus.tank).toBe(19)
+    focus.drive(30); expect(focus.tank).toBe(19)
+    focus.drive(570); expect(focus.tank).toBe(0)
+    // focus.drive(1); expect(focus.tank).toBe(0)
+
   })
-  test.todo('[17] refueling allows to keep driving')
-  test.todo('[18] adding fuel to a full tank has no effect')
+  test('[17] refueling allows to keep driving', ()=> {
+    focus.drive(600); expect(focus.odometer).toBe(600)
+    focus.refuel(1); expect(focus.tank).toBe(1)
+    focus.drive(15); expect(focus.odometer).toBe(615)
+  })
+
+  test('[18] adding fuel to a full tank has no effect', ()=>{
+    focus.refuel(2); expect(focus.tank).toBe(20)
+  })
 })
 
 describe('[Exercise 7] isEvenNumberAsync', () => {
-  test.todo('[19] resolves true if passed an even number')
-  test.todo('[20] resolves false if passed an odd number')
-  test.todo('[21] rejects an error with the message "number must be a number" if passed a non-number type')
-  test.todo('[22] rejects an error with the message "number must be a number" if passed NaN')
+  let isEven
+  beforeEach(() => {
+    isEven = (data)=> utils.isEvenNumberAsync(data) 
+  })
+  test('[19] resolves true if passed an even number', ()=>{
+    expect(isEven(2)).toBe(true)
+   })
+  test('[20] resolves false if passed an odd number', ()=>{
+    expect(isEven(5)).toBe(false)
+  })
+  
+  test('[21] rejects an error with the message "number must be a number" if passed a non-number type', ()=>{
+    expect(isEven("five")).toEqual("number must be a number")
+  })
+
+  test('[22] rejects an error with the message "number must be a number" if passed NaN', ()=>{
+    expect(isEven(NaN)).toEqual("number must be a number")
+  })
 })
